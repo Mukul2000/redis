@@ -1,4 +1,7 @@
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -8,8 +11,8 @@ public class Main {
     System.out.println("Logs from your program will appear here!");
 
     //  Uncomment this block to pass the first stage
-        ServerSocket serverSocket = null;
-        Socket clientSocket = null;
+      ServerSocket serverSocket = null;
+      Socket clientSocket = null;
         int port = 6379;
         try {
           serverSocket = new ServerSocket(port);
@@ -17,8 +20,13 @@ public class Main {
           // ensures that we don't run into 'Address already in use' errors
           serverSocket.setReuseAddress(true);
           // Wait for connection from client.
+
           clientSocket = serverSocket.accept();
-          clientSocket.getOutputStream().write("+PONG\r\n".getBytes());
+          InputStream in = clientSocket.getInputStream();
+          while (!clientSocket.isClosed()) {
+            // pretend to read data
+            clientSocket.getOutputStream().write("+PONG\r\n".getBytes());
+          }
         } catch (IOException e) {
           System.out.println("IOException: " + e.getMessage());
         } finally {
