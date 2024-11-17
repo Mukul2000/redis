@@ -21,11 +21,11 @@ public class Main {
           serverSocket.setReuseAddress(true);
           // Wait for connection from client.
 
-          clientSocket = serverSocket.accept();
-          InputStream in = clientSocket.getInputStream();
-          while (!clientSocket.isClosed()) {
-            // pretend to read data
+          while (!serverSocket.isClosed()) {
+            clientSocket = serverSocket.accept();
+            InputStream in = clientSocket.getInputStream();
             clientSocket.getOutputStream().write("+PONG\r\n".getBytes());
+            clientSocket.close();
           }
         } catch (IOException e) {
           System.out.println("IOException: " + e.getMessage());
