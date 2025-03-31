@@ -1,6 +1,5 @@
 package types;
 
-import static org.junit.Assert.assertThat;
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 import org.junit.Test;
