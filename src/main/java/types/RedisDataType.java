@@ -5,5 +5,6 @@ public enum RedisDataType {
     INTEGER,
     BULK_STRING,
     ARRAY,
-    ERROR
+    ERROR,
+    BOOLEAN
 }
