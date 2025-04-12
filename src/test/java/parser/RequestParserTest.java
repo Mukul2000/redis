@@ -88,6 +88,20 @@ public class RequestParserTest {
     }
 
     @Test
+    public void parse_bulk_string_with_spaces_success() throws IOException {
+        String command = "$11\r\nHello World\r\n";
+        InputStream in = new ByteArrayInputStream(command.getBytes());
+        RequestParser parser = new RequestParser(in);
+
+        RedisData parsed = parser.parse();
+
+        assertThat(parsed.getType()).isEqualTo(RedisDataType.BULK_STRING);
+        assertThat(parsed.getFormattedValue()).isEqualTo(command);
+        assertThat(parsed.getRawValue()).isEqualTo("Hello World");
+        assertThat(in.available()).isEqualTo(0);
+    }
+
+    @Test
     public void parse_integer_success() throws IOException {
         String command = ":432\r\n";
         InputStream in = new ByteArrayInputStream(command.getBytes());
