@@ -3,7 +3,6 @@ import static com.google.common.truth.Truth.assertThat;
 
 import org.junit.Test;
 
-import handler.RequestExecutor;
 import types.RedisArray;
 import types.RedisBulkString;
 import types.RedisData;

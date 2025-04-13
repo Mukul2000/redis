@@ -88,7 +88,7 @@ public class RequestParser {
             else value = value * 10 + c - '0';
             c = readChar();
         }
-        skipNBytes(1);
+        skipNBytes(1); // skip the '\n' last character
         if (isNegative) return -value;
         else return value;
     }

@@ -2,12 +2,8 @@ package parser;
 
 import org.junit.Test;
 
-import types.RedisArray;
-import types.RedisBoolean;
-import types.RedisBulkString;
 import types.RedisData;
 import types.RedisDataType;
-import types.RedisInteger;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertThrows;
