@@ -14,24 +14,6 @@ import types.RedisSimpleString;
 
 public class RequestExecutor {
 
-    private static enum RedisCommand {
-        PING,
-        SET,
-        GET,
-        DEL,
-        ECHO
-    }
-
-    // map Redis commands to their respective handlers
-    private static final ImmutableMap<RedisCommand, Function<RedisData, RedisData>> executeMap = ImmutableMap
-            .<RedisCommand, Function<RedisData, RedisData>>builder()
-            .put(RedisCommand.PING, RequestExecutor::handlePingCommand)
-            .put(RedisCommand.SET, RequestExecutor::handleSetCommand)
-            .put(RedisCommand.GET, RequestExecutor::handleGetCommand)
-            .put(RedisCommand.DEL, RequestExecutor::handleDelCommand)
-            .put(RedisCommand.ECHO, RequestExecutor::handleEchoCommand)
-            .build();
-
     public static RedisData execute(RedisData request) {
         String command = getString(request);
         if (command == null) {
@@ -56,7 +38,6 @@ public class RequestExecutor {
     private static RedisData handlePingCommand(RedisData request) {
         System.out.println("PING command received" + request.getFormattedValue());
         return new RedisBulkString("PONG");
-
     }
 
     private static RedisData handleGetCommand(RedisData request) {
